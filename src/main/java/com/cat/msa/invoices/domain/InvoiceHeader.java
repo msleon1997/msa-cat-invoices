@@ -13,17 +13,11 @@ import java.util.List;
 public class InvoiceHeader {
 
     private Long id;
-
     private String invoiceNumber;
-
     private String customerName;
-
     private Date date;
-
     private BigDecimal subTotalAmount;
-
     private BigDecimal vatAmount;
-
     private BigDecimal totalAmount;
 
     private List<InvoiceDetail> invoiceDetails;

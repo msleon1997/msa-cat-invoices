@@ -10,13 +10,9 @@ import java.math.BigDecimal;
 public class InvoiceDetail {
 
     private Long id;
-
     private String productName;
-
     private Integer quantity;
-
     private BigDecimal unitPrice;
-
     private BigDecimal subTotal;
 
     public void calculateSubTotal(){
