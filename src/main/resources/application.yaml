@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: msa-invoices
+  datasource:
+    url: jdbc:postgresql://localhost:5433/invoices_db
+    username: invoices
+    password: invoices
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto:validate
