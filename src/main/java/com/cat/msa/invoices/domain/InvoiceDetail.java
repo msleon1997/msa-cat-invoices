@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @Getter
 @Setter
