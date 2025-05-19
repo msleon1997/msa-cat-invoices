@@ -11,4 +11,20 @@ public interface InvoiceDetailApi {
 
     @PostMapping
     ResponseEntity<InvoiceDetail> save(@RequestBody InvoiceDetail invoiceDetail);
+<<<<<<< HEAD
+=======
+
+    @GetMapping
+    ResponseEntity<List<InvoiceDetail>> findAll();
+    @GetMapping("/{id}")
+    ResponseEntity<InvoiceDetail> findById(@PathVariable Long id);
+
+    @PutMapping("/{id}")
+    ResponseEntity<InvoiceDetail> updateDetail(@PathVariable Long id, @RequestBody InvoiceDetail invoiceDetail);
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> deleteByIdDetail(@PathVariable Long id);
+>>>>>>> feature/detail
 }
+
+//methods of create, put, post and delete

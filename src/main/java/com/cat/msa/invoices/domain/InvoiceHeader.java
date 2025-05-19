@@ -10,9 +10,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+=======
+//
+>>>>>>> feature/detail
 @Getter
 @Setter
 @Entity

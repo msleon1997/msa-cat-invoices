@@ -8,7 +8,6 @@ import java.util.List;
 
 @RequestMapping("/api/v1/invoice-headers")
 public interface InvoiceHeaderApi {
-
     @PostMapping
     ResponseEntity<InvoiceHeader> createInvoiceHeader(@RequestBody InvoiceHeader invoiceHeader);
 
@@ -21,6 +20,7 @@ public interface InvoiceHeaderApi {
     ResponseEntity<InvoiceHeader> findById(@PathVariable Long id);
 
     @GetMapping("/number/{number}")
+<<<<<<< HEAD
     ResponseEntity<InvoiceHeader> findByNumber(@PathVariable("number") String number);
 
     @PutMapping("/{id}")
@@ -33,4 +33,15 @@ public interface InvoiceHeaderApi {
     ResponseEntity<InvoiceHeader> updateInvoiceHeaderByDate(@RequestBody InvoiceHeader date, @PathVariable Integer id);
 
 
+=======
+    ResponseEntity<InvoiceHeader> findByNumber(@PathVariable String number);
+
+    @PutMapping("/{id}")
+    ResponseEntity<InvoiceHeader> update(@RequestBody InvoiceHeader invoiceHeader, @PathVariable Long id);
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> deleteById(@PathVariable Long id);
+>>>>>>> feature/detail
 }
+
+//methods of create, put, post and delete
