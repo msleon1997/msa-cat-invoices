@@ -23,3 +23,5 @@ public interface InvoiceDetailApi {
     @DeleteMapping("/{id}")
     ResponseEntity<Void> deleteByIdDetail(@PathVariable Long id);
 }
+
+//methods of create, put, post and delete
