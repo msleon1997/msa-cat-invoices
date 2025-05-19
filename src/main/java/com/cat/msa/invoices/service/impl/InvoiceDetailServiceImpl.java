@@ -1,20 +1,14 @@
 package com.cat.msa.invoices.service.impl;
 
 import com.cat.msa.invoices.domain.InvoiceDetail;
-<<<<<<< HEAD
-=======
 import com.cat.msa.invoices.exception.ResourceNotFoundException;
->>>>>>> feature/detail
 import com.cat.msa.invoices.repository.InvoiceDetailRepository;
 import com.cat.msa.invoices.service.InvoiceDetailService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 //
->>>>>>> feature/detail
 @Service
 public class InvoiceDetailServiceImpl implements InvoiceDetailService {
 
@@ -27,12 +21,9 @@ public class InvoiceDetailServiceImpl implements InvoiceDetailService {
     @Override
     @Transactional
     public InvoiceDetail createInvoiceDetail(InvoiceDetail invoiceDetail) {
-        invoiceDetail.calculateSubtotal();
+        invoiceDetail.calculateSubTotal();
         return invoiceDetailRepository.save(invoiceDetail);
     }
-<<<<<<< HEAD
-}
-=======
 
     @Override
     public List<InvoiceDetail> findAll() {
@@ -65,4 +56,3 @@ public class InvoiceDetailServiceImpl implements InvoiceDetailService {
         invoiceDetailRepository.delete(detail);
     }
 }
->>>>>>> feature/detail

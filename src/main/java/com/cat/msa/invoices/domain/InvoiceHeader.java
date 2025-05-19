@@ -1,28 +1,18 @@
 package com.cat.msa.invoices.domain;
 
 import com.cat.msa.invoices.constant.Constant;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
-=======
 //
->>>>>>> feature/detail
 @Getter
 @Setter
 @Entity
 @Table(name = "T_INVOICE_HEADERS")
-//@Table(name = "invoiceheader")
-
 public class InvoiceHeader {
 
     @Id
@@ -31,7 +21,7 @@ public class InvoiceHeader {
     private Long id;
 
     @Column(name = "INH_NUMBER", nullable = false)
-    private String number;
+    private String invoiceNumber;
 
     @Column(name = "INH_CUS_NAME", nullable = false)
     private String customerName;
@@ -48,9 +38,8 @@ public class InvoiceHeader {
     @Column(name = "INH_TOTAL", nullable = false)
     private BigDecimal totalAmount;
 
-
-    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<InvoiceDetail> details = new ArrayList<>();
+    @OneToMany(mappedBy = "invoiceHeader", cascade = CascadeType.ALL)
+    private List<InvoiceDetail> invoiceDetails;
 
     public void calculateInvoiceAmmount(){
         calculateSubTotalAmount();
@@ -61,8 +50,8 @@ public class InvoiceHeader {
 
     public void calculateSubTotalAmount() {
         subTotalAmount = BigDecimal.ZERO;
-        for (InvoiceDetail invoiceDetail : details) {
-            invoiceDetail.calculateSubtotal();
+        for (InvoiceDetail invoiceDetail : invoiceDetails) {
+            invoiceDetail.calculateSubTotal();
             subTotalAmount = subTotalAmount.add(invoiceDetail.getSubTotal());
         }
     }
@@ -76,47 +65,9 @@ public class InvoiceHeader {
     }
 
     public void addInvoiceDetail(){
-        for ( InvoiceDetail invoiceDetail : details) {
-            invoiceDetail.setInvoice(this);
+        for ( InvoiceDetail invoiceDetail : invoiceDetails) {
+            invoiceDetail.setInvoiceHeader(this);
         }
-    }
-
-    public void update(InvoiceHeader invoiceHeader) {
-        if (invoiceHeader == null) {
-            throw new RuntimeException("Factura a actualizar no puede ser null");
-        }
-        updateIfDifferent(this::getNumber, this::setNumber, invoiceHeader.getNumber());
-        updateIfDifferent(this::getDate, this::setDate, invoiceHeader.getDate());
-        updateIfDifferent(this::getCustomerName, this::setCustomerName, invoiceHeader.getCustomerName());
-
-        if (invoiceHeader.getDetails() != null) {
-            this.details.clear();
-            for (InvoiceDetail detail : invoiceHeader.getDetails()) {
-                detail.setInvoice(this);
-                detail.calculateSubtotal();
-                this.details.add(detail);
-            }
-        }
-
-        this.calculateSubTotalAmount();
-        this.calculateVatAmount();
-        this.calculateTotalAmount();
-    }
-
-
-    private <T> void updateIfDifferent(Supplier<T> getter, Consumer<T> setter, T newValue) {
-        T currentValue = getter.get();
-        if ((currentValue == null && newValue != null) ||
-                (currentValue != null && !currentValue.equals(newValue))) {
-            setter.accept(newValue);
-        }
-    }
-
-    public void updateInvoiceDate(Date newDate) {
-        if (newDate == null) {
-            throw new RuntimeException("Invoice date not be null!!");
-        }
-        this.setDate(newDate);
     }
 
 }

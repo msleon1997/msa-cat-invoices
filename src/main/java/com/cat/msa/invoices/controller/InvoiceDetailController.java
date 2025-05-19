@@ -2,20 +2,14 @@ package com.cat.msa.invoices.controller;
 
 import com.cat.msa.invoices.controller.api.InvoiceDetailApi;
 import com.cat.msa.invoices.domain.InvoiceDetail;
-<<<<<<< HEAD
-=======
 import com.cat.msa.invoices.exception.ResourceNotFoundException;
->>>>>>> feature/detail
 import com.cat.msa.invoices.service.InvoiceDetailService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 //
->>>>>>> feature/detail
 @RestController
 public class InvoiceDetailController implements InvoiceDetailApi {
 
@@ -30,9 +24,6 @@ public class InvoiceDetailController implements InvoiceDetailApi {
         InvoiceDetail savedInvoiceDetail = invoiceDetailService.createInvoiceDetail(invoiceDetail);
         return new ResponseEntity<>(savedInvoiceDetail, HttpStatus.CREATED);
     }
-<<<<<<< HEAD
-}
-=======
 
     @Override
     public ResponseEntity<List<InvoiceDetail>> findAll() {
@@ -72,4 +63,3 @@ public class InvoiceDetailController implements InvoiceDetailApi {
         }
     }
 }
->>>>>>> feature/detail

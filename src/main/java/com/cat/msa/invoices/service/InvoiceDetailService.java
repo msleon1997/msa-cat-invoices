@@ -1,18 +1,11 @@
 package com.cat.msa.invoices.service;
 
 import com.cat.msa.invoices.domain.InvoiceDetail;
-<<<<<<< HEAD
-
-=======
 import java.util.List;
 //
->>>>>>> feature/detail
 public interface InvoiceDetailService {
 
     InvoiceDetail createInvoiceDetail(InvoiceDetail invoiceDetail);
-<<<<<<< HEAD
-}
-=======
 
     List<InvoiceDetail> findAll();
 
@@ -22,4 +15,3 @@ public interface InvoiceDetailService {
 
     void deleteByIdDetail(Long id);
 }
->>>>>>> feature/detail

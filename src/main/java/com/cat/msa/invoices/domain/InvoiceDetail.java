@@ -1,24 +1,15 @@
 package com.cat.msa.invoices.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-<<<<<<< HEAD
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
-=======
 //
->>>>>>> feature/detail
 @Getter
 @Setter
 @Entity
 @Table(name = "T_INVOICE_DETAILS")
-//@Table(name = "invoicedetail")
-
 public class InvoiceDetail {
 
     @Id
@@ -38,38 +29,12 @@ public class InvoiceDetail {
     @Column(name = "IND_SUB_TOTAL", nullable = false)
     private BigDecimal subTotal;
 
-    @ManyToOne
-    @JoinColumn(name = "invoice_id", nullable = false)
-    @JsonBackReference
-    private InvoiceHeader invoice;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IND_INH_ID", nullable = false)
+    private InvoiceHeader invoiceHeader;
 
+    public void calculateSubTotal(){
+        subTotal = unitPrice.multiply(new BigDecimal(quantity));
 
-    //calcular subtotal
-    public void calculateSubtotal() {
-        if (quantity != null && unitPrice != null) {
-            this.subTotal = unitPrice.multiply(BigDecimal.valueOf(quantity));
-        }
     }
-
-    // Métodos de actualización
-    public void update(InvoiceDetail invoiceDetail) {
-        if (invoiceDetail == null) {
-            throw new RuntimeException("Factura detalle no puede ser null");
-        }
-
-        updateIfDifferent(this::getQuantity, this::setQuantity, invoiceDetail.getQuantity());
-        updateIfDifferent(this::getSubTotal, this::setSubTotal, invoiceDetail.getSubTotal());
-        updateIfDifferent(this::getProductName, this::setProductName, invoiceDetail.getProductName());
-        updateIfDifferent(this::getUnitPrice, this::setUnitPrice, invoiceDetail.getUnitPrice());
-    }
-
-    private <T> void updateIfDifferent(Supplier<T> getter, Consumer<T> setter, T newValue) {
-        T currentValue = getter.get();
-        if ((currentValue == null && newValue != null) ||
-                (currentValue != null && !currentValue.equals(newValue))) {
-            setter.accept(newValue);
-        }
-    }
-
-
 }
