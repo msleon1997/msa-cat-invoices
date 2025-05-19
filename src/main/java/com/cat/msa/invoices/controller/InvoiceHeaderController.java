@@ -65,7 +65,6 @@ public class InvoiceHeaderController implements InvoiceHeaderApi {
 
     @Override
     public ResponseEntity<InvoiceHeader> update(InvoiceHeader invoiceHeader, Integer id) {
-        // Si vienen detalles, asegúrate de vincularlos y recalcular cada uno
         if (invoiceHeader.getDetails() != null) {
             for (InvoiceDetail detail : invoiceHeader.getDetails()) {
                 detail.setInvoice(invoiceHeader);
