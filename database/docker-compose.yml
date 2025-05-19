@@ -7,9 +7,9 @@ services:
     ports:
       - "5433:5432"
     environment:
-      POSTGRES_USER: invoices
-      POSTGRES_PASSWORD: invoices
-      POSTGRES_DB: invoices_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: invoice@123
+      POSTGRES_DB: invoi
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./install.sql:/docker-entrypoint-initdb.d/install.sql
