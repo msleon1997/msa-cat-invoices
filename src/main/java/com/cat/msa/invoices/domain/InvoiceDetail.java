@@ -36,7 +36,7 @@ public class InvoiceDetail {
 
 
     @ManyToOne
-    @JoinColumn(name = "invoice_id", nullable = false)
+    @JoinColumn(name = "ind_inh_id", nullable = false)
     @JsonBackReference
     private InvoiceHeader invoice;
 

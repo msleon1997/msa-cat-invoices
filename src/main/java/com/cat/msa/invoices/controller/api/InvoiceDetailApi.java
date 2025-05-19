@@ -18,8 +18,12 @@ public interface InvoiceDetailApi {
     @GetMapping("/details/{id}")
     ResponseEntity<InvoiceDetail> findByIdDetail(@PathVariable Long id);
 
+    ResponseEntity<InvoiceDetail> findByIdDetail(Integer id);
+
     @PutMapping("/details/{id}")
     ResponseEntity<InvoiceDetail> updateDetail(@RequestBody InvoiceDetail invoiceDetail, @PathVariable Integer id);
+
+    ResponseEntity<InvoiceDetail> updateDetail(InvoiceDetail invoiceDetail, Long id);
 
     @DeleteMapping("/details/{id}")
     ResponseEntity<Void> deleteByIdDetail(@PathVariable Integer id);

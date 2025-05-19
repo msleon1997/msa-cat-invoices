@@ -42,9 +42,17 @@ public class InvoiceDetailController implements InvoiceDetailApi {
 
     @Override
     public ResponseEntity<InvoiceDetail> findByIdDetail(Long id) {
-        InvoiceDetail invoiceDetail = invoiceDetailService.findByIdDetail(Math.toIntExact(id));
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<InvoiceDetail> findByIdDetail(Integer id) {
+        InvoiceDetail invoiceDetail = invoiceDetailService.findByIdDetail(id);
         return new ResponseEntity<>(invoiceDetail, HttpStatus.OK);
     }
+
+
+
 
     @Override
     public ResponseEntity<InvoiceDetail> updateDetail(InvoiceDetail invoiceDetail, Integer id) {
@@ -56,6 +64,11 @@ public class InvoiceDetailController implements InvoiceDetailApi {
         invoiceHeader.update(invoiceHeader);
         invoiceDetail.update(invoiceDetail);
         return new ResponseEntity<>(updateInvoiceDetail, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<InvoiceDetail> updateDetail(InvoiceDetail invoiceDetail, Long id) {
+        return null;
     }
 
     @Override
