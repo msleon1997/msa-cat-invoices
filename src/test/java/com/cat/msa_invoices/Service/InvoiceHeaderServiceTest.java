@@ -28,9 +28,6 @@ public class InvoiceHeaderServiceTest {
     @Mock
     private InvoiceHeaderRepository invoiceHeaderRepository;
 
-    //given -> exitoso
-    //should -> error o exception
-    //when -> siempre va despues de un given o un should
     @Test
     void  shouldReturnInvoice_whenSendCorrectEmployeeData() throws ParseException {
 
@@ -42,7 +39,6 @@ public class InvoiceHeaderServiceTest {
         expectedInvoice.setCustomerName("Mateo Bravo");
         expectedInvoice.setDate(new SimpleDateFormat("yyyy-MM-dd").parse("2025-05-19"));
 
-        // Crear detalles
         InvoiceDetail detail1 = new InvoiceDetail();
         detail1.setProductName("Producto A");
         detail1.setQuantity(20);
@@ -53,7 +49,6 @@ public class InvoiceHeaderServiceTest {
         detail2.setQuantity(10);
         detail2.setUnitPrice(BigDecimal.valueOf(30.00));
 
-        // Agregar detalles a la lista
         List<InvoiceDetail> detailList = new ArrayList<>();
         detailList.add(detail1);
         detailList.add(detail2);

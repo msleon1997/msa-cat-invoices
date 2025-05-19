@@ -17,7 +17,6 @@ import java.util.function.Supplier;
 @Setter
 @Entity
 @Table(name = "T_INVOICE_HEADERS")
-//@Table(name = "invoiceheader")
 
 public class InvoiceHeader {
 

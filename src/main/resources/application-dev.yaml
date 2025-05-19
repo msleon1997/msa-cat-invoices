@@ -19,7 +19,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  # Opcionalmente puedes desactivar H2 si lo usabas
   h2:
     console:
       enabled: false

@@ -85,7 +85,7 @@ public class InvoiceDetailServiceImpl implements InvoiceDetailService {
 
     @Override
     public void deleteByIdDetail(Integer id) {
-        this.findByIdDetail(id); // Lanza NotFoundException si no existe
+        this.findByIdDetail(id);
         try {
             invoiceDetailRepository.deleteById(id);
         } catch (Exception e) {

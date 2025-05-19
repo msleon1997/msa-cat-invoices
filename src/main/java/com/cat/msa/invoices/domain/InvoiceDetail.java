@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 @Setter
 @Entity
 @Table(name = "T_INVOICE_DETAILS")
-//@Table(name = "invoicedetail")
+
 
 public class InvoiceDetail {
 
@@ -41,14 +41,12 @@ public class InvoiceDetail {
     private InvoiceHeader invoice;
 
 
-    //calcular subtotal
     public void calculateSubtotal() {
         if (quantity != null && unitPrice != null) {
             this.subTotal = unitPrice.multiply(BigDecimal.valueOf(quantity));
         }
     }
 
-    // Métodos de actualización
     public void update(InvoiceDetail invoiceDetail) {
         if (invoiceDetail == null) {
             throw new RuntimeException("Factura detalle no puede ser null");
