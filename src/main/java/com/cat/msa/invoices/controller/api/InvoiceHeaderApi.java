@@ -10,11 +10,27 @@ import java.util.List;
 public interface InvoiceHeaderApi {
 
     @PostMapping
-    ResponseEntity<InvoiceHeader> save(@RequestBody InvoiceHeader invoiceHeader);
+    ResponseEntity<InvoiceHeader> createInvoiceHeader(@RequestBody InvoiceHeader invoiceHeader);
+
+    ResponseEntity<InvoiceHeader> save(InvoiceHeader invoiceHeader);
 
     @GetMapping
     ResponseEntity<List<InvoiceHeader>> findAll();
+
     @GetMapping("/{id}")
     ResponseEntity<InvoiceHeader> findById(@PathVariable Long id);
+
+    @GetMapping("/number/{number}")
+    ResponseEntity<InvoiceHeader> findByNumber(@PathVariable("number") String number);
+
+    @PutMapping("/{id}")
+    ResponseEntity<InvoiceHeader> update(@RequestBody InvoiceHeader invoiceHeader, @PathVariable Integer id);
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> deleteById(@PathVariable Integer id);
+
+    @PatchMapping("/{id}/date-invoice")
+    ResponseEntity<InvoiceHeader> updateInvoiceHeaderByDate(@RequestBody InvoiceHeader date, @PathVariable Integer id);
+
 
 }
