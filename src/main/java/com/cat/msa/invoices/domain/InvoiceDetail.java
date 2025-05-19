@@ -34,15 +34,6 @@ public class InvoiceDetail {
     @Column(name = "IND_SUB_TOTAL", nullable = false)
     private BigDecimal subTotal;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "IND_INH_ID", nullable = false)
-//    private InvoiceHeader invoiceHeader;
-//
-//    public void calculateSubTotal(){
-//        subTotal = unitPrice.multiply(new BigDecimal(quantity));
-//
-//    }
-
 
     @ManyToOne
     @JoinColumn(name = "invoice_id", nullable = false)

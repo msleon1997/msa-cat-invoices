@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: invoice@123
-      POSTGRES_DB: invoi
+      POSTGRES_DB: invoiceDB
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./install.sql:/docker-entrypoint-initdb.d/install.sql
