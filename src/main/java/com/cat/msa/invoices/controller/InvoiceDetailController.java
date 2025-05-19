@@ -2,11 +2,10 @@ package com.cat.msa.invoices.controller;
 
 import com.cat.msa.invoices.controller.api.InvoiceDetailApi;
 import com.cat.msa.invoices.domain.InvoiceDetail;
-import com.cat.msa.invoices.domain.InvoiceHeader;
+import com.cat.msa.invoices.exception.ResourceNotFoundException;
 import com.cat.msa.invoices.service.InvoiceDetailService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,19 +28,38 @@ public class InvoiceDetailController implements InvoiceDetailApi {
     @Override
     public ResponseEntity<List<InvoiceDetail>> findAll() {
         List<InvoiceDetail> invoiceDetails = invoiceDetailService.findAll();
-        if (invoiceDetails.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(invoiceDetails);
+        return invoiceDetails.isEmpty() ?
+                ResponseEntity.noContent().build() :
+                ResponseEntity.ok(invoiceDetails);
     }
 
     @Override
     public ResponseEntity<InvoiceDetail> findById(Long id) {
-        InvoiceDetail invoiceDetail = invoiceDetailService.getInvoiceDetailById(id);
-        if (invoiceDetail != null) {
-            return new ResponseEntity<>(invoiceDetail, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try {
+            InvoiceDetail detail = invoiceDetailService.getInvoiceDetailById(id);
+            return ResponseEntity.ok(detail);
+        } catch (ResourceNotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Override
+    public ResponseEntity<InvoiceDetail> updateDetail(Long id, InvoiceDetail invoiceDetail) {
+        try {
+            InvoiceDetail updatedDetail = invoiceDetailService.updateInvoiceDetail(id, invoiceDetail);
+            return ResponseEntity.ok(updatedDetail);
+        } catch (ResourceNotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteByIdDetail(Long id) {
+        try {
+            invoiceDetailService.deleteByIdDetail(id);
+            return ResponseEntity.noContent().build();
+        } catch (ResourceNotFoundException ex) {
+            return ResponseEntity.notFound().build();
         }
     }
 }
